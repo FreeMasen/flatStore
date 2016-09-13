@@ -35,7 +35,7 @@ describe('File', function() {
         });
     });
     describe('test.txt', function() {
-        var f = new File(process.cwd() + '\\test\\test.txt');
+        var f = new File(process.cwd() + '/test/test.txt');
         it('Should not be undefined', function() {
             assert(f != undefined);
         });
@@ -69,7 +69,7 @@ describe('File', function() {
             });
         });
         describe('Should have variables go stale', function() {
-            var f2 = new File(process.cwd() + '\\test\\test.txt');
+            var f2 = new File(process.cwd() + '/test/test.txt');
             it('After reading f2 f should have a smaller lastAccess variable', function() {
                 f2.getContent(function() {
                     assert(f.lastAccess < f2.lastAccess, 'f: ' + f.lastAccess + ' f2: ' + f2.lastAccess);
