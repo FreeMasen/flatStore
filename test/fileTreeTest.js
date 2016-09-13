@@ -1,4 +1,4 @@
-var FileTree = require('../lib/filetree.js');
+var FileTree = require('../lib/fileTree.js');
 var assert = require('assert');
 
 describe('FileTree', function() {
