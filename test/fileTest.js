@@ -1,4 +1,4 @@
-var File = require('../src/file.js');
+var File = require('../lib/file.js');
 var assert = require('assert');
 
 describe('File', function() {

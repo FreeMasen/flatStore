@@ -1,1 +1,1 @@
-var Folder = require('../src/folder.js');
+var Folder = require('../lib/folder.js');
