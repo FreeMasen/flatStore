@@ -1,4 +1,4 @@
-![alt text][travis]
+[![alt text][travis]](https://travis-ci.org/FreeMasen/flatStore)
 
 # flatStore
 
