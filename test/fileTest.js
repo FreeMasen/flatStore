@@ -2,38 +2,6 @@ var File = require('../lib/file.js');
 var assert = require('assert');
 
 describe('File', function() {
-    describe('cwd', function() {
-        var f = new File(process.cwd());
-        it('Should not be undefined', function() {
-            assert(f != undefined);
-        });
-        it('Should have a path variable as a string', function() {
-            assert(f.path != undefined);
-            assert(typeof f.path == 'string');
-        });;
-        it('Should have lastAccess variable as a date', function() {
-            assert(f.lastAccess != undefined);
-            assert(f.lastAccess instanceof Date);
-
-        });
-        it('Should have lastMod variable as a date', function() {
-            assert(f.lastMod != undefined);
-            assert(f.lastMod instanceof Date)
-        });
-        it('Should have a isDir variable as a boolean', function() {
-            assert(f.isDir != undefined);
-            assert(typeof f.isDir == 'boolean');
-        })
-        it('Should be a directory', function() {
-            assert(f.isDir == true);
-        });
-        it('The getContent() callback should have and error and no data', function() {
-            f.getContent(function(err, data) {
-                assert(err != undefined);
-                assert(data == undefined);
-            });
-        });
-    });
     describe('test.txt', function() {
         var f = new File(process.cwd() + '/test/test.txt');
         it('Should not be undefined', function() {
@@ -55,10 +23,6 @@ describe('File', function() {
             assert(f.size != undefined);
             assert(typeof f.size == 'number');
         });
-        it('Should have a isDir variable as a boolean', function() {
-            assert(f.isDir != undefined);
-            assert(typeof f.isDir == 'boolean');
-        })
         it('Should not be a directory', function() {
             assert(f.isDir != true);
         });
@@ -88,6 +52,33 @@ describe('File', function() {
             it('after renew, last mod should be >= to f2', function() {
                 assert(f.lastMod >= f2.lastMod, 'f: ' + f.lastMod + ' f2: ' + f2.lastMod);
             });
+        });
+        describe('Should be interactive', function() {
+            var readData;
+            it('getContents should carry a string in the callback', function() {
+                f.getContent((err, data) => {
+                    assert(err == undefined, 'getContents returned error ' + err);
+                    assert(data != undefined);
+                    readData = data;
+                })
+            });
+            it('Should be delete-able', function() {
+                f.delete((err, data) => {
+                    assert(err == undefined, 'delete returned error ' + err);
+                    assert(data != undefined, 'data was undefined on delete');
+                    assert(data = readData, 'data returned from delete was not the same as from the read');
+                })
+            })
+        });
+    });
+    describe('Directory', function() {
+        if('Should fail to init', function() {
+            try {
+                var f = new File(process.cwd());
+                assert(false, 'File was generated from a directory');
+            } catch(e) {
+                assert(true)
+            }
         });
     });
 });

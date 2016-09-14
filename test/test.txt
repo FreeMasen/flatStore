@@ -1,7 +1,0 @@
-{
-    "test": "OMG this is a test file",
-    "array": ["one", "two"],
-    "subObj": {
-        "innerT": "tube?"
-    }
-}
